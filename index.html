@@ -31,7 +31,7 @@
 
     body {
       background-color: var(--bg-dark);
-      background-image: radial-gradient(circle at 50% 15%, #1f1b4d 0%, #0c0d22 60%, #050611 100%);
+      background-image: radial-gradient(circle at 50% 12%, #221c54 0%, #0d0e26 55%, #050611 100%);
       color: var(--text-main);
       font-family: var(--font-family);
       width: 100vw;
@@ -50,18 +50,18 @@
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 20%, rgba(53, 31, 110, 0.45), transparent 75%);
+      background: radial-gradient(ellipse at 50% 20%, rgba(65, 36, 138, 0.35), transparent 75%);
     }
 
     /* Top Bar */
     .top-header {
-      height: 44px;
+      height: 42px;
       padding: 0 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      background: rgba(10, 11, 30, 0.65);
+      background: rgba(10, 11, 30, 0.7);
       backdrop-filter: blur(8px);
       z-index: 10;
       flex-shrink: 0;
@@ -93,12 +93,12 @@
       color: var(--text-muted);
     }
 
-    /* Subheader with PlinkoX logo & stats */
+    /* Subheader */
     .sub-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 6px 14px;
+      padding: 4px 14px 2px;
       z-index: 5;
     }
 
@@ -133,7 +133,7 @@
       box-shadow: 0 0 6px #00e676;
     }
 
-    /* Main Board (Canvas area) */
+    /* Board Area */
     .board-wrapper {
       flex: 1;
       position: relative;
@@ -150,20 +150,21 @@
       display: block;
     }
 
-    /* Left Ball Multiplier Indicator */
+    /* Left Multiplier Tube */
     .multiplier-meter {
       position: absolute;
-      left: 12px;
-      top: 15px;
+      left: 10px;
+      top: 10px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      background: rgba(14, 17, 43, 0.7);
-      padding: 10px 8px;
-      border-radius: 20px;
-      border: 1px solid rgba(124, 77, 255, 0.25);
-      backdrop-filter: blur(6px);
+      gap: 10px;
+      background: rgba(14, 17, 43, 0.75);
+      padding: 8px 6px;
+      border-radius: 18px;
+      border: 1px solid rgba(124, 77, 255, 0.3);
+      backdrop-filter: blur(8px);
       z-index: 5;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 
     .meter-item {
@@ -172,13 +173,13 @@
       align-items: center;
       gap: 3px;
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-muted);
-      transition: transform 0.2s, color 0.2s;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .meter-item.active {
-      transform: scale(1.15);
+      transform: scale(1.22);
       color: #fff;
     }
 
@@ -186,58 +187,62 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
+      transition: box-shadow 0.2s;
     }
 
     .ball-1x {
       background: radial-gradient(circle at 35% 35%, #ff529a, #b31057);
-      box-shadow: 0 0 8px #ff529a;
+      box-shadow: 0 0 6px #ff529a;
     }
 
     .ball-5x {
       background: radial-gradient(circle at 35% 35%, #ffd452, #e65c00);
-      box-shadow: 0 0 8px #ff9800;
+      box-shadow: 0 0 6px #ff9800;
     }
 
     .ball-10x {
       background: radial-gradient(circle at 35% 35%, #64ffff, #0077ff);
-      box-shadow: 0 0 10px #00d2ff;
+      box-shadow: 0 0 8px #00d2ff;
     }
+
+    .meter-item.active .ball-1x { box-shadow: 0 0 14px #ff529a; }
+    .meter-item.active .ball-5x { box-shadow: 0 0 14px #ffd452; }
+    .meter-item.active .ball-10x { box-shadow: 0 0 16px #64ffff; }
 
     /* Control Panel */
     .controls-panel {
       flex-shrink: 0;
       background: linear-gradient(180deg, rgba(16, 18, 48, 0.95) 0%, rgba(9, 10, 26, 0.98) 100%);
       border-top: 1px solid var(--panel-border);
-      border-radius: 24px 24px 0 0;
-      padding: 10px 14px 8px;
+      border-radius: 22px 22px 0 0;
+      padding: 8px 14px 6px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.5);
+      gap: 7px;
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.55);
       z-index: 10;
     }
 
-    /* Upper Control Row: Risk, Drop, Multi-drop */
     .control-main-row {
       display: grid;
-      grid-template-columns: 80px 1fr 80px;
+      grid-template-columns: 78px 1fr 78px;
       align-items: center;
       gap: 8px;
     }
 
-    /* Risk Selector Button */
+    /* Risk Selector */
     .risk-toggle-btn {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(124, 77, 255, 0.3);
       border-radius: 14px;
-      padding: 8px 4px;
+      padding: 6px 2px;
       cursor: pointer;
-      height: 80px;
+      height: 78px;
       transition: all 0.2s ease;
     }
 
@@ -246,8 +251,8 @@
     }
 
     .risk-hex {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -268,7 +273,7 @@
       text-transform: uppercase;
     }
 
-    /* Primary Drop Button (Big Circle) */
+    /* Primary Hold & Drop Button */
     .drop-btn-container {
       display: flex;
       justify-content: center;
@@ -276,8 +281,8 @@
     }
 
     .drop-btn {
-      width: 86px;
-      height: 86px;
+      width: 84px;
+      height: 84px;
       border-radius: 50%;
       background: radial-gradient(circle at 40% 30%, #a838ff, #4711bf 70%);
       border: 2px solid rgba(255, 255, 255, 0.35);
@@ -289,12 +294,14 @@
       color: #fff;
       cursor: pointer;
       position: relative;
+      touch-action: none;
       transition: transform 0.1s, box-shadow 0.2s;
     }
 
-    .drop-btn:active {
-      transform: scale(0.93);
-      box-shadow: 0 0 10px rgba(135, 43, 255, 0.4);
+    .drop-btn:active, .drop-btn.holding {
+      transform: scale(0.94);
+      box-shadow: 0 0 28px rgba(224, 36, 195, 0.8), inset 0 0 14px rgba(255, 255, 255, 0.6);
+      background: radial-gradient(circle at 40% 30%, #c438ff, #6211bf 70%);
     }
 
     .drop-btn.disabled {
@@ -304,17 +311,19 @@
     }
 
     .drop-btn-text-main {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
       letter-spacing: 0.5px;
-      line-height: 1.1;
+      line-height: 1.15;
       text-align: center;
     }
 
     .drop-btn-sub {
-      font-size: 9px;
-      color: rgba(255, 255, 255, 0.7);
-      margin-top: 2px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 1px;
     }
 
     /* Ball Amount Selector */
@@ -328,7 +337,7 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(124, 77, 255, 0.25);
       border-radius: 10px;
-      height: 36px;
+      height: 35px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -346,7 +355,7 @@
       box-shadow: 0 0 10px rgba(224, 36, 195, 0.4);
     }
 
-    /* Bet Adjustment Row */
+    /* Bet Row */
     .bet-row {
       display: flex;
       align-items: center;
@@ -359,8 +368,8 @@
     }
 
     .btn-step {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 10px;
       border: none;
       background: rgba(255, 255, 255, 0.07);
@@ -369,7 +378,6 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background 0.15s;
     }
 
     .btn-step:active {
@@ -377,8 +385,8 @@
     }
 
     .btn-step svg {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       stroke-width: 2.5;
     }
 
@@ -391,7 +399,7 @@
     }
 
     .bet-val-text {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       color: #fff;
       letter-spacing: 0.5px;
@@ -404,7 +412,7 @@
     }
 
     .quick-bet-btn {
-      height: 36px;
+      height: 34px;
       padding: 0 10px;
       border-radius: 10px;
       border: 1px solid rgba(0, 210, 255, 0.3);
@@ -418,7 +426,6 @@
       justify-content: center;
     }
 
-    /* Summary Row */
     .summary-bar {
       display: flex;
       align-items: center;
@@ -427,7 +434,7 @@
       background: rgba(124, 77, 255, 0.1);
       border: 1px solid rgba(124, 77, 255, 0.2);
       border-radius: 8px;
-      padding: 4px 10px;
+      padding: 3px 8px;
       font-size: 10px;
       color: #b7bfe8;
       font-weight: 600;
@@ -438,12 +445,12 @@
       font-weight: 800;
     }
 
-    /* Footer Bar: Balance, Win, Auto, Sound */
+    /* Footer */
     .footer-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 6px 2px;
+      padding: 3px 6px 1px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -454,8 +461,8 @@
     }
 
     .icon-action-btn {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -464,7 +471,6 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: color 0.15s, background 0.15s;
     }
 
     .icon-action-btn:active {
@@ -478,8 +484,8 @@
     }
 
     .icon-action-btn svg {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
     }
 
     .footer-stat-group {
@@ -494,14 +500,14 @@
     }
 
     .footer-stat-label {
-      font-size: 9px;
+      font-size: 8px;
       color: var(--text-muted);
       font-weight: 700;
       letter-spacing: 0.5px;
     }
 
     .footer-stat-value {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       color: #00e676;
     }
@@ -510,7 +516,7 @@
       color: #ffffff;
     }
 
-    /* Toast Notification */
+    /* Toast */
     #toast-msg {
       position: absolute;
       top: 50px;
@@ -537,7 +543,7 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Modal dialogs */
+    /* Modals */
     .modal-overlay {
       position: absolute;
       inset: 0;
@@ -604,7 +610,6 @@
       height: 16px;
     }
 
-    /* Risk option cards */
     .risk-options {
       display: flex;
       flex-direction: column;
@@ -620,7 +625,6 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(255, 255, 255, 0.04);
       cursor: pointer;
-      transition: border 0.15s, background 0.15s;
     }
 
     .risk-opt-item.active {
@@ -667,7 +671,6 @@
       border-radius: 50%;
     }
 
-    /* Autoplay Options */
     .auto-spins-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -723,13 +726,13 @@
     <div class="sub-bar">
       <div class="game-logo">plinko<span>X</span></div>
       <div class="online-badge">
-        <span class="online-dot"></span> Online: <span id="online-counter">184</span>
+        <span class="online-dot"></span> Online: <span id="online-counter">178</span>
       </div>
     </div>
 
     <!-- Canvas Play Area -->
     <div class="board-wrapper">
-      <!-- Ball Multiplier Indicator -->
+      <!-- Left Ball Multiplier Indicator Tube -->
       <div class="multiplier-meter">
         <div class="meter-item" id="meter-10x">
           <div class="meter-ball ball-10x"></div>
@@ -750,7 +753,6 @@
 
     <!-- Controls Panel -->
     <div class="controls-panel">
-      <!-- Upper: Risk button, Big Drop button, Ball Count -->
       <div class="control-main-row">
         <!-- Risk Mode -->
         <button class="risk-toggle-btn" id="risk-btn" type="button">
@@ -760,15 +762,15 @@
               <circle cx="12" cy="12" r="3" stroke-width="2"/>
             </svg>
           </div>
-          <span class="risk-label">Risk</span>
+          <span class="risk-label">Version</span>
           <span class="risk-value" id="current-risk-txt">LOW</span>
         </button>
 
-        <!-- Big Drop Button -->
+        <!-- Primary HOLD & DROP Button -->
         <div class="drop-btn-container">
           <button class="drop-btn" id="drop-action-btn" type="button">
-            <span class="drop-btn-text-main" id="drop-btn-label">DROP</span>
-            <span class="drop-btn-sub" id="drop-sub-label">BALL</span>
+            <span class="drop-btn-text-main" id="drop-btn-label">HOLD<br>&amp; DROP</span>
+            <span class="drop-btn-sub" id="drop-sub-label"></span>
           </button>
         </div>
 
@@ -798,7 +800,7 @@
             <line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/>
           </svg>
         </button>
-        <button class="quick-bet-btn" id="btn-max-bet" type="button">MAX</button>
+        <button class="quick-bet-btn" id="btn-max-bet" type="button">B+</button>
       </div>
 
       <!-- Total Bet Summary -->
@@ -841,11 +843,11 @@
       </footer>
     </div>
 
-    <!-- Risk Selection Modal -->
+    <!-- Volatility Modal -->
     <div class="modal-overlay" id="risk-modal">
       <div class="modal-card">
         <div class="modal-header">
-          <span class="modal-title">Select Volatility</span>
+          <span class="modal-title">Select Version</span>
           <button class="modal-close-btn" id="close-risk-modal" type="button">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18"/>
@@ -946,17 +948,19 @@
 
     postParent({ type: 'GAME_READY' });
 
+    let shownBalance = 0;
     async function refreshBalance() {
       const d = await api('/api/user/init');
       if (d && d.success) {
         serverBalance = d.balance;
+        if (!inFlightRequests && !activeBalls.length) shownBalance = d.balance;
         showBalance();
       }
     }
 
     function showBalance() {
       const el = document.getElementById('balance-display-val');
-      if (el) el.textContent = Number(serverBalance).toFixed(2) + " ETB";
+      if (el) el.textContent = Number(shownBalance).toFixed(2) + " ETB";
       postParent({ type: 'BALANCE_UPDATE', newBalance: serverBalance });
     }
 
@@ -993,18 +997,18 @@
     }
 
     function playPegBounce(row) {
-      const baseFreq = 500 + row * 35;
-      playTone(baseFreq, 'triangle', 0.04, 0.12);
+      const baseFreq = 520 + row * 34;
+      playTone(baseFreq, 'triangle', 0.04, 0.1);
     }
 
     function playBucketWin(isBig = false) {
       if (!soundEnabled || !audioCtx) return;
       if (isBig) {
-        playTone(523.25, 'sine', 0.15, 0.25);
-        setTimeout(() => playTone(659.25, 'sine', 0.15, 0.25), 100);
-        setTimeout(() => playTone(783.99, 'sine', 0.3, 0.3), 200);
+        playTone(523.25, 'sine', 0.15, 0.22);
+        setTimeout(() => playTone(659.25, 'sine', 0.15, 0.22), 90);
+        setTimeout(() => playTone(783.99, 'sine', 0.28, 0.26), 180);
       } else {
-        playTone(440, 'sine', 0.08, 0.15);
+        playTone(460, 'sine', 0.08, 0.14);
       }
     }
 
@@ -1035,23 +1039,40 @@
     let autoRemaining = 0;
     let inFlightRequests = 0;
 
-    // 16 rows of pins = 17 buckets
     const ROWS = 16;
-    const BUCKETS = {
+    // Default fallback paytables ensure instant responsiveness
+    let BUCKETS = {
       low: [20, 10, 5, 2, 1.5, 1.3, 1.1, 0.8, 0.5, 0.8, 1.1, 1.3, 1.5, 2, 5, 10, 20],
       medium: [100, 25, 10, 5, 2, 1.4, 0.6, 0.4, 0.2, 0.4, 0.6, 1.4, 2, 5, 10, 25, 100],
       high: [1000, 130, 26, 9, 4, 2, 0.2, 0.1, 0, 0.1, 0.2, 2, 4, 9, 26, 130, 1000]
     };
+    let tablesLoaded = true;
 
+    async function loadTables() {
+      const d = await api('/api/plinko/paytable');
+      if (d && d.success && d.tables) {
+        BUCKETS = d.tables;
+        tablesLoaded = true;
+        document.querySelectorAll('.risk-opt-item').forEach(el => {
+          const k = el.dataset.risk, t = BUCKETS[k];
+          if (!t) return;
+          const maxVal = Math.max(...t);
+          el.querySelector('.risk-opt-desc').textContent = 'Win Up to ' + (maxVal * 10) + 'X';
+        });
+      }
+    }
+    loadTables();
+
+    // Vibrant SmartSoft color palette for 17 bottom multiplier bins
     const BUCKET_COLORS = [
-      "#ff2a55", "#ff4070", "#ff6b3d", "#fca311", "#a052ff",
-      "#7038ff", "#5030ff", "#3040ff", "#2962ff",
-      "#3040ff", "#5030ff", "#7038ff", "#a052ff",
-      "#fca311", "#ff6b3d", "#ff4070", "#ff2a55"
+      "#3871ff", "#4459f2", "#6037e8", "#8727d8", "#b120bb",
+      "#da2097", "#f3386e", "#ff6347", "#ff7b25", "#ff6347",
+      "#f3386e", "#da2097", "#b120bb", "#8727d8", "#6037e8",
+      "#4459f2", "#3871ff"
     ];
 
     /* ==========================================================================
-       CANVAS & PHYSICS ENGINE
+       CANVAS & DRUM SIMULATION (28 Balls in rotating top drum)
        ========================================================================== */
     const canvas = document.getElementById('plinkoCanvas');
     const ctx = canvas.getContext('2d');
@@ -1060,7 +1081,49 @@
     let bucketPositions = [];
     let activeBalls = [];
     let bucketHighlights = new Array(17).fill(0);
-    let topWheelRotation = 0;
+
+    // Drum configuration
+    let drumCenterX = 0;
+    let drumCenterY = 32;
+    let drumRadius = 28;
+    let drumAngle = 0;
+    let drumBalls = [];
+    const TOTAL_DRUM_BALLS = 28;
+
+    function initDrumBalls() {
+      drumBalls = [];
+      for (let i = 0; i < TOTAL_DRUM_BALLS; i++) {
+        // Distribute types: ~18 Pink (1x), ~7 Yellow (5x), ~3 Cyan (10x)
+        let mult = 1;
+        let color = "#ff2e93";
+        let glow = "rgba(255, 46, 147, 0.8)";
+
+        if (i >= 25) {
+          mult = 10;
+          color = "#00d2ff";
+          glow = "rgba(0, 210, 255, 0.9)";
+        } else if (i >= 18) {
+          mult = 5;
+          color = "#ffd452";
+          glow = "rgba(255, 179, 0, 0.85)";
+        }
+
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * (drumRadius - 7);
+
+        drumBalls.push({
+          x: Math.cos(angle) * dist,
+          y: Math.sin(angle) * dist,
+          vx: (Math.random() - 0.5) * 1.4,
+          vy: (Math.random() - 0.5) * 1.4,
+          r: 3.4,
+          mult: mult,
+          color: color,
+          glow: glow
+        });
+      }
+    }
+    initDrumBalls();
 
     function resizeCanvas() {
       const rect = canvas.parentElement.getBoundingClientRect();
@@ -1069,23 +1132,23 @@
       canvas.height = rect.height * dpr;
       ctx.resetTransform?.();
       ctx.scale(dpr, dpr);
+      drumCenterX = rect.width / 2;
       buildPins(rect.width, rect.height);
     }
-
     window.addEventListener('resize', resizeCanvas);
 
     function buildPins(w, h) {
       boardPins = [];
       bucketPositions = [];
 
-      const topMargin = 70;
-      const bottomMargin = 45;
+      const topMargin = 78;
+      const bottomMargin = 40;
       const availableH = h - topMargin - bottomMargin;
       const rowSpacing = availableH / ROWS;
 
       for (let r = 0; r <= ROWS; r++) {
         const pinCount = r + 1;
-        const pinSpacing = Math.min(24, (w * 0.86) / (ROWS + 1));
+        const pinSpacing = Math.min(23, (w * 0.88) / (ROWS + 1));
         const startX = (w / 2) - ((pinCount - 1) * pinSpacing) / 2;
         const y = topMargin + r * rowSpacing;
 
@@ -1093,14 +1156,13 @@
           boardPins.push({
             x: startX + c * pinSpacing,
             y: y,
-            radius: 2.6,
+            radius: 2.5,
             row: r,
             col: c
           });
         }
       }
 
-      // Buckets at the bottom row (ROWS)
       const lastRowPins = boardPins.filter(p => p.row === ROWS);
       for (let i = 0; i < lastRowPins.length - 1; i++) {
         const p1 = lastRowPins[i];
@@ -1109,7 +1171,7 @@
         const bW = (p2.x - p1.x) * 0.94;
         bucketPositions.push({
           x: midX,
-          y: p1.y + rowSpacing * 0.5,
+          y: p1.y + rowSpacing * 0.48,
           width: bW,
           height: 18,
           index: i
@@ -1117,7 +1179,7 @@
       }
     }
 
-    /* Plinko Ball Class */
+    /* Plinko Falling Ball */
     class PlinkoBall {
       constructor(opts) {
         this.unitBet = opts.unitBet;
@@ -1125,18 +1187,20 @@
         this.ballMultiplier = opts.ballMultiplier || 1;
         this.payout = opts.payout;
         this.serverMultiplier = opts.serverMultiplier;
+        this.onDone = opts.onDone || null;
 
-        // Path generator leading exactly to targetBucket
-        this.pathDirs = this.generatePath(this.targetBucket);
+        this.pathDirs = Array.isArray(opts.path) && opts.path.length === ROWS
+          ? opts.path
+          : this.generatePath(this.targetBucket);
+
         this.currentStep = 0;
-
-        // Physics coords
         const rect = canvas.parentElement.getBoundingClientRect();
-        this.x = rect.width / 2 + (Math.random() - 0.5) * 4;
-        this.y = 35;
-        this.vx = (Math.random() - 0.5) * 0.8;
-        this.vy = 2.2;
+        this.x = rect.width / 2 + (Math.random() - 0.5) * 3;
+        this.y = drumCenterY + drumRadius + 2;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = 2.0;
         this.radius = 5.2;
+
         this.color = this.getColor();
         this.glowColor = this.getGlow();
         this.isDone = false;
@@ -1145,22 +1209,20 @@
 
       getColor() {
         if (this.ballMultiplier === 10) return "#00d2ff";
-        if (this.ballMultiplier === 5) return "#ffb300";
+        if (this.ballMultiplier === 5) return "#ffd452";
         return "#ff2e93";
       }
 
       getGlow() {
-        if (this.ballMultiplier === 10) return "rgba(0, 210, 255, 0.8)";
-        if (this.ballMultiplier === 5) return "rgba(255, 179, 0, 0.8)";
+        if (this.ballMultiplier === 10) return "rgba(0, 210, 255, 0.9)";
+        if (this.ballMultiplier === 5) return "rgba(255, 179, 0, 0.85)";
         return "rgba(255, 46, 147, 0.8)";
       }
 
       generatePath(target) {
-        // ROWS steps: exactly target 'right' steps (1), remainder (ROWS - target) 'left' steps (0)
         let arr = [];
         for (let i = 0; i < target; i++) arr.push(1);
         while (arr.length < ROWS) arr.push(0);
-        // Shuffle array for realistic randomized bounce sequence
         for (let i = arr.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
           [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -1174,12 +1236,11 @@
           return;
         }
 
-        this.vy += 0.22; // Gravity
+        this.vy += 0.22;
         this.y += this.vy;
         this.x += this.vx;
-        this.vx *= 0.985; // Damping
+        this.vx *= 0.985;
 
-        // Check bounce against row pins
         const currentTargetRow = this.currentStep;
         if (currentTargetRow < ROWS) {
           const rowPins = boardPins.filter(p => p.row === currentTargetRow);
@@ -1188,9 +1249,8 @@
             const dy = this.y - p.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             if (dist < this.radius + p.radius + 3 && this.vy > 0) {
-              // Steer toward path decision
-              const dir = this.pathDirs[currentTargetRow]; // 0 = left, 1 = right
-              this.vx = (dir === 1 ? 1.4 : -1.4) + (Math.random() - 0.5) * 0.3;
+              const dir = this.pathDirs[currentTargetRow];
+              this.vx = (dir === 1 ? 1.38 : -1.38) + (Math.random() - 0.5) * 0.25;
               this.vy = -1.6;
               this.currentStep++;
               playPegBounce(currentTargetRow);
@@ -1199,10 +1259,10 @@
           }
         }
 
-        // Check landing in bucket
         if (this.currentStep >= ROWS - 1 && this.y >= (bucketPositions[0]?.y || 400) - 6) {
           this.isDone = true;
           this.onLanded();
+          if (this.onDone) this.onDone();
         }
       }
 
@@ -1211,7 +1271,6 @@
         bucketHighlights[bIdx] = 1.0;
         playBucketWin(this.serverMultiplier > 2.0);
 
-        // Update bottom win display
         const winEl = document.getElementById('win-display-val');
         if (winEl) {
           winEl.textContent = Number(this.payout).toFixed(2) + " ETB";
@@ -1223,40 +1282,139 @@
         c.save();
         c.globalAlpha = Math.max(0, this.alpha);
 
-        // Outer glow
         c.shadowColor = this.glowColor;
         c.shadowBlur = 10;
-
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         c.fillStyle = this.color;
         c.fill();
 
-        // Highlight sheen
         c.beginPath();
         c.arc(this.x - 1.5, this.y - 1.5, this.radius * 0.45, 0, Math.PI * 2);
         c.fillStyle = "rgba(255, 255, 255, 0.75)";
         c.fill();
-
         c.restore();
       }
     }
 
-    /* Animation Loop */
+    /* Drum Physics & Rendering (Tumbling 28 balls) */
+    function updateDrumPhysics() {
+      drumAngle += 0.02;
+      const effectiveR = drumRadius - 5.5;
+
+      for (let b of drumBalls) {
+        // Tangential dragging force from drum rotation
+        const tangX = -b.y * 0.025;
+        const tangY = b.x * 0.025;
+        b.vx += tangX * 0.06;
+        b.vy += tangY * 0.06 + 0.04; // gravity inside drum
+
+        b.x += b.vx;
+        b.y += b.vy;
+        b.vx *= 0.98;
+        b.vy *= 0.98;
+
+        // Radial boundary collision
+        const dist = Math.sqrt(b.x * b.x + b.y * b.y);
+        if (dist > effectiveR) {
+          const nx = b.x / dist;
+          const ny = b.y / dist;
+          b.x = nx * effectiveR;
+          b.y = ny * effectiveR;
+
+          // Reflect velocity along normal
+          const dot = b.vx * nx + b.vy * ny;
+          b.vx = (b.vx - 1.7 * dot * nx) * 0.85;
+          b.vy = (b.vy - 1.7 * dot * ny) * 0.85;
+        }
+      }
+    }
+
+    function drawDrum(c, cx, cy, r) {
+      c.save();
+      c.translate(cx, cy);
+
+      // Drum outer glass container
+      c.beginPath();
+      c.arc(0, 0, r, 0, Math.PI * 2);
+      c.fillStyle = "rgba(18, 23, 62, 0.75)";
+      c.strokeStyle = "rgba(124, 77, 255, 0.45)";
+      c.lineWidth = 2.5;
+      c.shadowColor = "rgba(124, 77, 255, 0.35)";
+      c.shadowBlur = 10;
+      c.fill();
+      c.stroke();
+      c.shadowBlur = 0;
+
+      // Rotating spokes/segments
+      c.save();
+      c.rotate(drumAngle);
+      c.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      c.lineWidth = 1;
+      for (let i = 0; i < 4; i++) {
+        c.beginPath();
+        c.moveTo(-r + 3, 0);
+        c.lineTo(r - 3, 0);
+        c.stroke();
+        c.rotate(Math.PI / 4);
+      }
+      c.restore();
+
+      // Render 28 tumbling balls inside the drum
+      for (let b of drumBalls) {
+        c.save();
+        c.beginPath();
+        c.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        c.fillStyle = b.color;
+        c.shadowColor = b.glow;
+        c.shadowBlur = 5;
+        c.fill();
+
+        // Little sheen reflection
+        c.beginPath();
+        c.arc(b.x - 1, b.y - 1, b.r * 0.45, 0, Math.PI * 2);
+        c.fillStyle = "rgba(255, 255, 255, 0.65)";
+        c.fill();
+        c.restore();
+      }
+
+      // Glass shine overlay
+      const grad = c.createLinearGradient(-r, -r, r, r);
+      grad.addColorStop(0, "rgba(255, 255, 255, 0.25)");
+      grad.addColorStop(0.4, "rgba(255, 255, 255, 0.03)");
+      grad.addColorStop(1, "rgba(0, 0, 0, 0.3)");
+      c.beginPath();
+      c.arc(0, 0, r - 1.5, 0, Math.PI * 2);
+      c.fillStyle = grad;
+      c.fill();
+
+      // Bottom exit nozzle
+      c.beginPath();
+      c.rect(-5, r - 3, 10, 6);
+      c.fillStyle = "#2c2860";
+      c.strokeStyle = "rgba(124, 77, 255, 0.5)";
+      c.lineWidth = 1.5;
+      c.fill();
+      c.stroke();
+
+      c.restore();
+    }
+
+    /* Main Render Loop */
     function animate() {
       const rect = canvas.parentElement.getBoundingClientRect();
       ctx.clearRect(0, 0, rect.width, rect.height);
 
-      // 1. Draw top rotating ball wheel / dispenser
-      topWheelRotation += 0.015;
-      drawDispenserWheel(ctx, rect.width / 2, 28, 22, topWheelRotation);
+      // 1. Update & Render Top Drum
+      updateDrumPhysics();
+      drawDrum(ctx, rect.width / 2, drumCenterY, drumRadius);
 
       // 2. Draw Pins
       for (let p of boardPins) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "#94a3b8";
-        ctx.shadowColor = "rgba(255, 255, 255, 0.4)";
+        ctx.fillStyle = "#8ea1be";
+        ctx.shadowColor = "rgba(255, 255, 255, 0.35)";
         ctx.shadowBlur = 3;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -1266,7 +1424,7 @@
       const multipliers = BUCKETS[riskMode];
       for (let i = 0; i < bucketPositions.length; i++) {
         const b = bucketPositions[i];
-        const mult = multipliers[i];
+        const mult = multipliers[i] === null ? 0 : multipliers[i];
         const highlight = bucketHighlights[i];
 
         ctx.save();
@@ -1278,7 +1436,6 @@
           bucketHighlights[i] = Math.max(0, bucketHighlights[i] - 0.03);
         }
 
-        // Slot Box
         ctx.fillStyle = BUCKET_COLORS[i];
         ctx.beginPath();
         const rx = -b.width / 2;
@@ -1286,7 +1443,6 @@
         ctx.roundRect ? ctx.roundRect(rx, ry, b.width, b.height, 4) : ctx.rect(rx, ry, b.width, b.height);
         ctx.fill();
 
-        // Slot Multiplier Text
         ctx.fillStyle = "#ffffff";
         ctx.font = "bold 8px -apple-system, sans-serif";
         ctx.textAlign = "center";
@@ -1300,7 +1456,7 @@
         ctx.restore();
       }
 
-      // 4. Update & Draw Balls
+      // 4. Update & Draw Falling Balls
       for (let i = activeBalls.length - 1; i >= 0; i--) {
         const ball = activeBalls[i];
         ball.update();
@@ -1310,7 +1466,6 @@
         }
       }
 
-      // Notify parent when all in-flight balls have finished
       if (activeBalls.length === 0 && inFlightRequests === 0) {
         postParent({ type: 'BET_ENDED' });
       }
@@ -1318,51 +1473,18 @@
       requestAnimationFrame(animate);
     }
 
-    function drawDispenserWheel(c, x, y, r, angle) {
-      c.save();
-      c.translate(x, y);
-
-      // Outer ring
-      c.beginPath();
-      c.arc(0, 0, r, 0, Math.PI * 2);
-      c.fillStyle = "rgba(18, 22, 54, 0.85)";
-      c.strokeStyle = "rgba(124, 77, 255, 0.4)";
-      c.lineWidth = 2;
-      c.fill();
-      c.stroke();
-
-      // Rotating inner balls
-      c.rotate(angle);
-      const orbColors = ["#ff2e93", "#ffb300", "#00d2ff", "#ff2e93", "#ffb300", "#00d2ff"];
-      for (let i = 0; i < 6; i++) {
-        const th = (i * Math.PI * 2) / 6;
-        const ox = Math.cos(th) * (r * 0.58);
-        const oy = Math.sin(th) * (r * 0.58);
-        c.beginPath();
-        c.arc(ox, oy, 3.8, 0, Math.PI * 2);
-        c.fillStyle = orbColors[i];
-        c.shadowColor = orbColors[i];
-        c.shadowBlur = 6;
-        c.fill();
-        c.shadowBlur = 0;
-      }
-
-      // Center cap
-      c.beginPath();
-      c.arc(0, 0, 5, 0, Math.PI * 2);
-      c.fillStyle = "#33396b";
-      c.fill();
-
-      c.restore();
-    }
-
     /* ==========================================================================
        BET EXECUTION & SERVER INTEGRATION
        ========================================================================== */
     async function executeDrop() {
       initAudio();
+      if (!tablesLoaded) {
+        showToast("Loading game data, try again in a moment");
+        stopAutoplay();
+        return;
+      }
 
-      const totalBet = betAmount * ballCount;
+      const totalBet = Math.round(betAmount * ballCount * 100) / 100;
       if (serverBalance < totalBet) {
         showToast("Insufficient balance");
         postParent({ type: 'OPEN_DEPOSIT' });
@@ -1370,12 +1492,10 @@
         return;
       }
 
-      // Lock button for in-flight safety
       inFlightRequests++;
       updateDropButtonState();
       postParent({ type: 'BET_STARTED' });
 
-      // Call authoritative endpoint
       const res = await api('/api/bet/play', {
         method: 'POST',
         body: JSON.stringify({
@@ -1398,42 +1518,55 @@
         return;
       }
 
-      // Authoritative Balance Update
       serverBalance = res.newBalance;
+      shownBalance = serverBalance - (Number(res.payout) || 0);
       showBalance();
 
-      // Launch Visual Animation matching server result
       spawnBallsForResult(res);
     }
 
     function spawnBallsForResult(res) {
       const serverMult = Number(res.multiplier) || 0;
-      const unitPayout = (res.payout || 0) / ballCount;
-      const multipliers = BUCKETS[riskMode];
+      const balls = (res.visualOutcome && res.visualOutcome.balls) || [];
+      let landed = 0;
 
-      // Parse outcome or calculate exact matching bucket
-      for (let i = 0; i < ballCount; i++) {
-        setTimeout(() => {
-          let chosenBucket = 8; // default center
-          let ballMultiplier = 1;
+      if (balls.length > 0) {
+        balls.forEach((b, i) => {
+          setTimeout(() => {
+            const ballMult = b.ballMultiplier || (b.mult >= 10 && b.mult % 10 === 0 ? 10 : b.mult >= 5 && b.mult % 5 === 0 ? 5 : 1);
+            highlightMeter(ballMult);
 
-          // Determine ball multiplier & bucket matching server multiplier
-          if (res.visualOutcome && res.visualOutcome.bucket !== undefined) {
-            chosenBucket = res.visualOutcome.bucket;
-            ballMultiplier = res.visualOutcome.ballMult || 1;
-          } else {
-            // Pick ball type probabilistically or by multiple
-            if (serverMult >= 10 && serverMult % 10 === 0) {
-              ballMultiplier = 10;
-            } else if (serverMult >= 5 && serverMult % 5 === 0) {
-              ballMultiplier = 5;
-            } else {
-              ballMultiplier = 1;
-            }
+            const ball = new PlinkoBall({
+              unitBet: betAmount,
+              bucket: b.bucket,
+              path: b.path,
+              ballMultiplier: ballMult,
+              payout: b.payout,
+              serverMultiplier: b.mult,
+              onDone: () => {
+                landed++;
+                if (landed === balls.length) {
+                  shownBalance = serverBalance;
+                  showBalance();
+                }
+              }
+            });
+            activeBalls.push(ball);
+          }, i * 200);
+        });
+      } else {
+        // Fallback for single or bulk results without granular array
+        const unitPayout = (Number(res.payout) || 0) / ballCount;
+        const multipliers = BUCKETS[riskMode];
 
-            const targetSlotMult = Math.max(0, serverMult / ballMultiplier);
+        for (let i = 0; i < ballCount; i++) {
+          setTimeout(() => {
+            let ballMult = 1;
+            if (serverMult >= 10 && serverMult % 10 === 0) ballMult = 10;
+            else if (serverMult >= 5 && serverMult % 5 === 0) ballMult = 5;
 
-            // Find closest bucket in current risk table
+            const targetSlotMult = Math.max(0, serverMult / ballMult);
+            let chosenBucket = 8;
             let closestDist = Infinity;
             multipliers.forEach((val, idx) => {
               const diff = Math.abs(val - targetSlotMult);
@@ -1442,20 +1575,26 @@
                 chosenBucket = idx;
               }
             });
-          }
 
-          highlightMeter(ballMultiplier);
+            highlightMeter(ballMult);
 
-          const ball = new PlinkoBall({
-            unitBet: betAmount,
-            bucket: chosenBucket,
-            ballMultiplier: ballMultiplier,
-            payout: unitPayout,
-            serverMultiplier: serverMult
-          });
-
-          activeBalls.push(ball);
-        }, i * 220);
+            const ball = new PlinkoBall({
+              unitBet: betAmount,
+              bucket: chosenBucket,
+              ballMultiplier: ballMult,
+              payout: unitPayout,
+              serverMultiplier: serverMult,
+              onDone: () => {
+                landed++;
+                if (landed === ballCount) {
+                  shownBalance = serverBalance;
+                  showBalance();
+                }
+              }
+            });
+            activeBalls.push(ball);
+          }, i * 200);
+        }
       }
     }
 
@@ -1467,7 +1606,7 @@
         setTimeout(() => {
           document.querySelectorAll('.meter-item').forEach(el => el.classList.remove('active'));
           document.getElementById('meter-1x')?.classList.add('active');
-        }, 1200);
+        }, 1100);
       }
     }
 
@@ -1481,8 +1620,52 @@
     }
 
     /* ==========================================================================
-       AUTOPLAY CONTROLLER
+       HOLD & DROP + AUTOPLAY LOGIC
        ========================================================================== */
+    let holdTimeout = null;
+    let holdInterval = null;
+    let isHolding = false;
+
+    const dropBtn = document.getElementById('drop-action-btn');
+
+    function startHolding() {
+      if (isAutoplaying) {
+        stopAutoplay();
+        return;
+      }
+      isHolding = true;
+      dropBtn.classList.add('holding');
+
+      // Execute initial drop immediately
+      executeDrop();
+
+      // Begin continuous drop after 240ms hold
+      holdTimeout = setTimeout(() => {
+        holdInterval = setInterval(() => {
+          if (isHolding) {
+            executeDrop();
+          }
+        }, 220);
+      }, 240);
+    }
+
+    function stopHolding() {
+      isHolding = false;
+      dropBtn.classList.remove('holding');
+      clearTimeout(holdTimeout);
+      clearInterval(holdInterval);
+    }
+
+    // Touch & Mouse bindings for Hold & Drop
+    dropBtn.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      startHolding();
+    });
+
+    window.addEventListener('pointerup', stopHolding);
+    window.addEventListener('pointercancel', stopHolding);
+
+    /* Autoplay Controller */
     let autoInterval = null;
 
     function startAutoplay(spins) {
@@ -1497,11 +1680,9 @@
         stopAutoplay();
         return;
       }
-
       autoRemaining--;
       updateAutoplayUI();
       executeDrop();
-
       autoInterval = setTimeout(runAutoSpin, 1400);
     }
 
@@ -1518,12 +1699,12 @@
       const autoBtn = document.getElementById('btn-auto-modal');
 
       if (isAutoplaying) {
-        label.textContent = "STOP";
+        label.innerHTML = "STOP";
         sub.textContent = autoRemaining + " LEFT";
         autoBtn?.classList.add('active');
       } else {
-        label.textContent = "DROP";
-        sub.textContent = "BALL";
+        label.innerHTML = "HOLD<br>&amp; DROP";
+        sub.textContent = "";
         autoBtn?.classList.remove('active');
       }
     }
@@ -1538,7 +1719,6 @@
         `${betAmount.toFixed(2)} ETB x ${ballCount} = ${total.toFixed(2)} ETB`;
     }
 
-    // Bet Step Minus
     document.getElementById('btn-minus').addEventListener('click', () => {
       initAudio();
       if (betAmount > MIN_BET) {
@@ -1547,7 +1727,6 @@
       }
     });
 
-    // Bet Step Plus
     document.getElementById('btn-plus').addEventListener('click', () => {
       initAudio();
       if (betAmount < MAX_BET) {
@@ -1556,14 +1735,12 @@
       }
     });
 
-    // Max Bet
     document.getElementById('btn-max-bet').addEventListener('click', () => {
       initAudio();
       betAmount = Math.min(MAX_BET, Math.floor(Math.max(MIN_BET, serverBalance / ballCount)));
       updateBetDisplay();
     });
 
-    // Ball Quantity Selectors (1, 5, 10, 25)
     document.querySelectorAll('.ball-amt-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         initAudio();
@@ -1574,16 +1751,7 @@
       });
     });
 
-    // Main Drop / Stop Button
-    document.getElementById('drop-action-btn').addEventListener('click', () => {
-      if (isAutoplaying) {
-        stopAutoplay();
-      } else {
-        executeDrop();
-      }
-    });
-
-    // Risk Modal Handlers
+    // Risk Modal
     const riskModal = document.getElementById('risk-modal');
     document.getElementById('risk-btn').addEventListener('click', () => {
       initAudio();
@@ -1606,7 +1774,7 @@
       });
     });
 
-    // Autoplay Modal Handlers
+    // Autoplay Modal
     const autoModal = document.getElementById('auto-modal');
     document.getElementById('btn-auto-modal').addEventListener('click', () => {
       initAudio();
@@ -1654,15 +1822,15 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Live Online Counter simulation
+    // Online Players counter variation
     setInterval(() => {
       const el = document.getElementById('online-counter');
       if (el) {
-        const cur = parseInt(el.textContent, 10) || 180;
+        const cur = parseInt(el.textContent, 10) || 178;
         const delta = Math.floor(Math.random() * 5) - 2;
         el.textContent = Math.max(120, cur + delta);
       }
-    }, 6000);
+    }, 7000);
 
     /* ==========================================================================
        STARTUP
